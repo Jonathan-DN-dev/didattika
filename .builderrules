@@ -1,0 +1,311 @@
+Always remember to comply to :
+# Project Compliance Guide
+
+This document provides comprehensive guidelines for agents working on this Next.js Enterprise Boilerplate codebase.
+
+## 🏗 Project Overview
+
+This is a feature-rich Next.js Enterprise Boilerplate with a comprehensive tech stack optimized for scalability, developer experience, and production readiness.
+
+### Tech Stack
+- **Framework**: Next.js 15.3.1 with App Router
+- **Runtime**: React 19.1.0
+- **Language**: TypeScript with strict configuration
+- **Styling**: TailwindCSS 4.1.5
+- **Package Manager**: pnpm 9.1.0
+- **Component System**: Radix UI + CVA (Class Variance Authority)
+- **Testing**: Jest + React Testing Library + Playwright
+- **Code Quality**: ESLint + Prettier + TypeScript strict mode
+- **Development**: Storybook + OpenTelemetry observability
+
+## 📁 Project Structure
+
+```
+├── app/                    # Next.js App Router pages
+│   ├── api/health/         # Health check endpoints
+│   ├── layout.tsx          # Root layout
+│   └── page.tsx            # Homepage
+├── components/             # Reusable UI components
+│   ├── Button/             # Component folder pattern
+│   │   ├── Button.tsx
+│   │   └── Button.stories.tsx
+│   └── Tooltip/
+├── styles/
+│   └── tailwind.css        # Global styles
+├── e2e/                    # Playwright end-to-end tests
+├── assets/                 # Static assets
+└── [config files]
+```
+
+## 🛠 Development Guidelines
+
+### Package Management
+- **ALWAYS use pnpm** - This project uses pnpm as the package manager
+- Run `pnpm install` for dependencies
+- Use `pnpm run [script]` for npm scripts
+
+### Component Development
+1. **Follow the established component pattern**:
+   - Create folder for each component (e.g., `components/Button/`)
+   - Include TypeScript component file and Storybook story
+   - Use CVA for variant management
+   - Implement proper TypeScript interfaces
+
+2. **Component Architecture**:
+   ```tsx
+   // Use CVA for variant management
+   import { cva, type VariantProps } from "class-variance-authority"
+   import { twMerge } from "tailwind-merge"
+
+   const componentStyles = cva(
+     ["base-classes"],
+     {
+       variants: {
+         intent: {
+           primary: ["variant-classes"],
+           secondary: ["variant-classes"],
+         },
+         size: {
+           sm: ["size-classes"],
+           lg: ["size-classes"],
+         },
+       },
+       defaultVariants: {
+         intent: "primary",
+         size: "lg",
+       },
+     }
+   )
+
+   export interface ComponentProps extends VariantProps<typeof componentStyles> {
+     // Additional props
+   }
+
+   export function Component({ className, intent, size, ...props }: ComponentProps) {
+     return (
+       <element className={twMerge(componentStyles({ intent, size, className }))} {...props}>
+         {props.children}
+       </element>
+     )
+   }
+   ```
+
+3. **Use Radix UI for complex components**:
+   - Leverage existing Radix UI primitives
+   - Follow accessibility best practices
+   - Maintain headless UI approach
+
+### Styling Guidelines
+1. **TailwindCSS 4.1.5**:
+   - Use utility-first approach
+   - Leverage CSS variables for theming: `var(--color-name)`
+   - Use responsive design patterns
+   - Follow established color schemes (primary: blue, etc.)
+
+2. **CSS Organization**:
+   - Global styles in `styles/tailwind.css`
+   - Component-specific styles via TailwindCSS classes
+   - Use `@layer base` for global overrides
+   - Maintain existing border color compatibility
+
+3. **Class Naming**:
+   - Use CVA for component variants
+   - Use `twMerge` for conditional class merging
+   - Prefer utility classes over custom CSS
+
+### TypeScript Standards
+1. **Strict Configuration**:
+   - All TypeScript strict rules enabled
+   - Use `@total-typescript/ts-reset` for enhanced type safety
+   - Leverage `noUncheckedIndexedAccess: true`
+
+2. **Import Patterns**:
+   - Use absolute imports from project root
+   - Follow established import order (external → builtin → internal → sibling)
+   - Leverage path mapping in `tsconfig.json`
+
+3. **Type Definitions**:
+   - Export interfaces for component props
+   - Use proper generic constraints
+   - Leverage `VariantProps` from CVA
+
+### Code Quality Standards
+1. **ESLint Configuration**:
+   - Follow configured rules in `eslint.config.mjs`
+   - Import order enforcement
+   - TypeScript best practices
+   - Next.js specific rules
+
+2. **Prettier Formatting**:
+   - 120 character line width
+   - No semicolons
+   - ES5 trailing commas
+   - 2-space indentation
+   - TailwindCSS class sorting
+
+### Testing Strategy
+1. **Unit Tests (Jest + RTL)**:
+   - Test files alongside components
+   - Use React Testing Library patterns
+   - Configuration in `jest.config.js`
+
+2. **E2E Tests (Playwright)**:
+   - Located in `e2e/` directory
+   - Use `pnpm run e2e:headless` or `pnpm run e2e:ui`
+
+3. **Storybook**:
+   - Document components with stories
+   - Run with `pnpm run storybook`
+   - Include interaction tests
+
+### Environment Configuration
+1. **Environment Variables**:
+   - Use `@t3-oss/env-nextjs` for type-safe env vars
+   - Define schema in `env.mjs`
+   - Validate at build time
+
+2. **Next.js Configuration**:
+   - React Strict Mode enabled
+   - Bundle analyzer integration
+   - Health check route rewrites
+   - Optimized logging configuration
+
+## 🚀 Available Scripts
+
+### Development
+- `pnpm run dev` - Start development server with Turbo
+- `pnpm run build` - Production build
+- `pnpm run start` - Start production server
+- `pnpm run analyze` - Bundle analysis
+
+### Code Quality
+- `pnpm run lint` - Run ESLint
+- `pnpm run lint:fix` - Fix ESLint issues
+- `pnpm run prettier` - Check Prettier formatting
+- `pnpm run prettier:fix` - Fix Prettier formatting
+- `pnpm run format` - Format TypeScript files
+
+### Testing
+- `pnpm run test` - Run Jest tests
+- `pnpm run e2e:headless` - Run Playwright tests
+- `pnpm run e2e:ui` - Run Playwright with UI
+
+### Storybook
+- `pnpm run storybook` - Start Storybook dev server
+- `pnpm run build-storybook` - Build Storybook
+- `pnpm run test-storybook` - Test Storybook stories
+
+### Analysis
+- `pnpm run coupling-graph` - Generate component dependency graph
+
+## 🎯 Key Dependencies & Usage
+
+### UI Components
+- **Radix UI**: Headless, accessible components
+- **CVA**: Variant management for consistent styling
+- **TailwindCSS**: Utility-first styling
+
+### Development Tools
+- **TypeScript**: Strict type checking
+- **ESLint**: Code linting with custom rules
+- **Prettier**: Code formatting
+- **Jest**: Unit testing
+- **Playwright**: E2E testing
+- **Storybook**: Component documentation
+
+### Production Features
+- **OpenTelemetry**: Observability and monitoring
+- **Bundle Analyzer**: Performance optimization
+- **Health Checks**: Kubernetes-compatible endpoints
+- **Semantic Release**: Automated versioning
+
+## ⚠️ Critical Requirements
+
+### Package Manager
+- **MUST use pnpm** - Never use npm or yarn
+- Respect the `packageManager` field in package.json
+
+### TypeScript
+- **Never bypass TypeScript errors** - Fix them properly
+- Use strict type checking
+- Leverage existing type utilities
+
+### Component Development
+- **Follow CVA pattern** for variants
+- **Use Radix UI** for complex components
+- **Maintain accessibility** standards
+- **Include Storybook stories** for new components
+
+### Code Style
+- **Run linting** before commits
+- **Follow import order** rules
+- **Use absolute imports** from project root
+- **Maintain consistent naming** conventions
+
+### Testing
+- **Write tests** for new components
+- **Ensure E2E tests pass** before deployment
+- **Update Storybook stories** for component changes
+
+## 🔧 Development Workflow
+
+1. **Setup**: `pnpm install`
+2. **Development**: `pnpm run dev`
+3. **Linting**: `pnpm run lint:fix`
+4. **Testing**: `pnpm run test`
+5. **E2E**: `pnpm run e2e:headless`
+6. **Build**: `pnpm run build`
+
+## 📚 Component Examples
+
+Refer to existing components:
+- `components/Button/Button.tsx` - CVA pattern, variants, TypeScript
+- `components/Tooltip/Tooltip.tsx` - Radix UI integration, accessibility
+- `app/page.tsx` - App Router usage, metadata, responsive design
+
+## 🎨 Design System
+
+### Colors
+- Primary: Blue theme (`blue-400`, `blue-700`)
+- Neutral: Gray scale (`gray-500`, `gray-900`)
+- Background: White/Dark mode support
+
+### Typography
+- Font weights: `font-light`, `font-extrabold`
+- Responsive sizes: `text-4xl md:text-5xl xl:text-6xl`
+
+### Spacing
+- Consistent padding/margin scale
+- Responsive breakpoints: `sm:`, `md:`, `lg:`, `xl:`
+
+### Components
+- Rounded corners: `rounded-xl`
+- Transitions: `transition-colors delay-50`
+- Interactive states: `hover:enabled:`
+
+## 🚨 Common Pitfalls to Avoid
+
+1. **Don't use npm/yarn** - Always use pnpm
+2. **Don't bypass TypeScript** - Fix type errors properly
+3. **Don't ignore ESLint rules** - Follow the established patterns
+4. **Don't create custom CSS** - Use TailwindCSS utilities
+5. **Don't skip testing** - Maintain test coverage
+6. **Don't ignore accessibility** - Follow Radix UI patterns
+7. **Don't hardcode values** - Use the design system tokens
+
+## 🔍 Debugging & Monitoring
+
+### Health Checks
+- `/api/health` - Main health endpoint
+- Multiple aliases: `/healthz`, `/health`, `/ping`
+
+### Bundle Analysis
+- Set `ANALYZE=true` environment variable
+- Run `pnpm run analyze`
+
+### Performance
+- OpenTelemetry integration enabled
+- Monitor with Vercel analytics
+- Bundle size tracking
+
+This guide ensures consistent development practices and maintains the high-quality standards established in this enterprise boilerplate.

@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;600;700&display=swap');
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -15,5 +16,484 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+  }
+
+  :root {
+    --didattika-yellow: #FAB417;
+    --didattika-orange: #FFC94E;
+    --didattika-blue: #3E88C7;
+    --slate-900: #0F172A;
+    --slate-700: #334155;
+  }
+
+  body {
+    font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+  }
+}
+
+/* Custom utility classes */
+.font-overpass {
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.bg-didattika-yellow {
+  background-color: var(--didattika-yellow);
+}
+
+.bg-didattika-orange {
+  background-color: var(--didattika-orange);
+}
+
+.text-didattika-blue {
+  color: var(--didattika-blue);
+}
+
+.border-didattika-blue {
+  border-color: var(--didattika-blue);
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  min-width: 94px;
+  height: 2.5rem;
+  transition: all 0.2s;
+  background-color: var(--didattika-blue);
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.login-btn:hover {
+  transform: scale(1.05);
+}
+
+.login-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  width: 100%;
+  height: 2rem;
+  transition: all 0.2s;
+  color: var(--didattika-blue);
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.social-btn:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.social-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.social-btn svg {
+  flex-shrink: 0;
+}
+
+/* Dashboard Styles */
+.premium-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  background-color: var(--didattika-yellow);
+  color: var(--didattika-blue);
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.premium-btn:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.premium-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.icon-btn {
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.coin-balance {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: white;
+  border-radius: 0.375rem;
+}
+
+.coin-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--didattika-yellow);
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.sidebar {
+  width: 16rem;
+  background-color: var(--didattika-orange);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 256px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  color: var(--didattika-blue);
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.nav-item.active {
+  color: white;
+  background-color: var(--didattika-blue);
+}
+
+.nav-item svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.close-menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.close-menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.close-menu-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.main-content {
+  flex: 1;
+  background-color: white;
+  border-top-left-radius: 1.5rem;
+  padding: 1.5rem;
+  overflow: auto;
+}
+
+.tools-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .tools-header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.tools-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--slate-900);
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.tabs-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #EBF0FF;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.125rem;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+  color: var(--slate-700);
+}
+
+.tab.active {
+  color: white;
+  background-color: var(--didattika-blue);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.action-btn {
+  padding: 0.75rem;
+  background-color: #F9FAFB;
+  border: 1px solid #D1D5DB;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.action-btn:hover {
+  background-color: #F3F4F6;
+}
+
+.action-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.language-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .language-selector {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.language-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.language-tag {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  border-radius: 9999px;
+  border: 1px solid var(--didattika-blue);
+  color: white;
+  background-color: rgba(62, 136, 199, 0.5);
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: white;
+  border: 1px solid #93C5FD;
+  border-radius: 0.375rem;
+  flex: 1;
+  max-width: 32rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.search-input:hover {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.coin-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.coin-indicator span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--didattika-yellow);
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tool-card {
+  background-color: #F9FAFB;
+  border: 3px solid var(--didattika-blue);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.tool-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tool-icon {
+  width: 3rem;
+  height: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.tool-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tool-content h3 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.tool-content p {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.generate-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+  border-radius: 0 0 0 0.5rem;
+  transition: all 0.2s;
+  background-color: var(--didattika-blue);
+  font-family: 'Overpass', -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.generate-btn:hover {
+  transform: scale(1.05);
+}
+
+.generate-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+.generate-btn svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+}
+
+.chat-avatar {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background-color: var(--didattika-blue);
+}
+
+.chat-avatar:hover {
+  transform: scale(1.1);
+}
+
+.chat-avatar:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #3B82F6, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    border-radius: 0;
   }
 }
